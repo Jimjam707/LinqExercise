@@ -21,19 +21,70 @@ namespace LinqExercise
              */
 
             //TODO: Print the Sum of numbers
-
+            
+            var numbersSum = numbers.Sum();
+            Console.WriteLine($"Numbers Sum: {numbersSum}");
+            Console.WriteLine();
+            
             //TODO: Print the Average of numbers
-
+            
+            var numbersAverage = numbers.Average();
+            Console.WriteLine($"Numbers average: {numbersAverage}");
+            Console.WriteLine();
+            
             //TODO: Order numbers in ascending order and print to the console
-
+            
+            Console.WriteLine("Numbers in ascending order: ");
+            var numbersOrdered = numbers.OrderBy(x => x);
+            foreach (var number in numbersOrdered)
+            {
+                Console.WriteLine(number);
+                
+            }
+            Console.WriteLine();
+            
             //TODO: Order numbers in descending order and print to the console
-
+            
+            Console.WriteLine("Numbers in descending order: ");
+            var numbersOrderedDescending = numbers.OrderByDescending(x => x);
+            foreach (var number in numbersOrderedDescending)
+            {
+                Console.WriteLine(number);
+            }
+            Console.WriteLine();
+            
             //TODO: Print to the console only the numbers greater than 6
-
+            
+            Console.WriteLine("Numbers greater than 6: ");
+            var numbersGreaterThan6 = numbers.Where(x => x > 6);
+            foreach (var number in numbersGreaterThan6)
+            {
+                Console.WriteLine(number);
+            }
+            Console.WriteLine();
+            
             //TODO: Order numbers in any order (ascending or desc) but only print 4 of them **foreach loop only!**
-
+            
+            Console.WriteLine("Numbers in any order: ");
+            var numbersOrderedAny = numbers.OrderBy(x => x).Take(4);
+            foreach (var number in numbersOrderedAny)
+            {
+                Console.WriteLine(number);
+            }
+            Console.WriteLine();
+            
             //TODO: Change the value at index 4 to your age, then print the numbers in descending order
-
+            
+            numbers[4] = 25;
+            Console.WriteLine("Numbers in descending order: ");
+            var numbersOrderedDescending2 = numbers.OrderByDescending(x => x);
+            foreach (var number in numbersOrderedDescending2)
+            {
+                Console.WriteLine(number);
+            }
+            Console.WriteLine();
+            
+            
             // List of employees ****Do not remove this****
             var employees = CreateEmployees();
 
