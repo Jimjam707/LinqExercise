@@ -89,17 +89,50 @@ namespace LinqExercise
             var employees = CreateEmployees();
 
             //TODO: Print all the employees' FullName properties to the console only if their FirstName starts with a C OR an S and order this in ascending order by FirstName.
+            Console.WriteLine("Employees with first name starting with C or S: ");
+            var firstLetter = employees
+                .Where(e => e.FirstName.StartsWith('C') || e.FirstName.StartsWith('S'))
+                .OrderBy(e => e.FirstName);
+            foreach (var e in firstLetter)
+            {
+                Console.WriteLine(e.FullName);
+            }
+            Console.WriteLine();
 
             //TODO: Print all the employees' FullName and Age who are over the age 26 to the console and order this by Age first and then by FirstName in the same result.
+            Console.WriteLine("Employees over age 26 (ordered by age, then first name):");
+            var over26 = employees
+                .Where(e => e.Age > 26)
+                .OrderBy(e => e.Age)
+                .ThenBy(e => e.FirstName);
+            foreach (var e in over26)
+            {
+                Console.WriteLine($"{e.FullName} - Age: {e.Age}");
+            }
+            Console.WriteLine();
 
             //TODO: Print the Sum of the employees' YearsOfExperience if their YOE is less than or equal to 10 AND Age is greater than 35.
+            var filteredForSum = employees.Where(e => e.YearsOfExperience <= 10 && e.Age > 35);
+            var sumYoe = filteredForSum.Sum(e => e.YearsOfExperience);
+            Console.WriteLine($"Sum of years of experience (YOE <= 10 and Age > 35): {sumYoe}");
+            Console.WriteLine();
 
             //TODO: Now print the Average of the employees' YearsOfExperience if their YOE is less than or equal to 10 AND Age is greater than 35.
+            var avgYoe = filteredForSum.Any() ? filteredForSum.Average(e => e.YearsOfExperience) : 0;
+            Console.WriteLine($"Average years of experience (YOE <= 10 and Age > 35): {avgYoe}");
+            Console.WriteLine();
 
             //TODO: Add an employee to the end of the list without using employees.Add()
-
-
+            
+            employees = employees.Append(new Employee("Jimi", "Adams", 29, 9)).ToList();    
+            
+            Console.WriteLine("All employees:");
             Console.WriteLine();
+           var totalEmployees = employees.Count();
+           foreach (var e in employees)
+           {
+               Console.WriteLine($"{e.FullName} - Age: {e.Age}");
+           }
 
             Console.ReadLine();
         }
